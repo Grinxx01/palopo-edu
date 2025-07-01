@@ -9,7 +9,7 @@ class Institusi extends Model
 {
     protected $fillable = [
         'nama_sekolah',
-        'tingkat_pendidikan',
+        'education_level_id',
         'alamat',
         'deskripsi',
         'url_website',

@@ -17,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
 
 
 class InstitusiResource extends Resource
@@ -32,9 +33,11 @@ class InstitusiResource extends Resource
                 ->required()
                 ->label('Nama Sekolah'),
 
-            TextInput::make('tingkat_pendidikan')
-                ->required()
-                ->label('Tingkat Pendidikan'),
+            Select::make('education_level_id')
+                ->label('Tingkat Pendidikan')
+                ->relationship('educationLevel', 'name')
+                ->searchable()
+                ->required(),
 
             Textarea::make('alamat')
                 ->required(),
@@ -58,7 +61,10 @@ class InstitusiResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama_sekolah')->searchable()->sortable(),
-                TextColumn::make('tingkat_pendidikan')->sortable(),
+                TextColumn::make('educationLevel.name')
+                    ->label('Tingkat Pendidikan')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('alamat')->limit(30),
                 TextColumn::make('url_website')->limit(20),
                 ImageColumn::make('gambar')->circular(),

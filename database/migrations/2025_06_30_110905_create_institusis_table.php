@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('institusis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_sekolah');
-            $table->string('tingkat_pendidikan');
             $table->text('alamat');
             $table->text('deskripsi')->nullable();
             $table->string('url_website')->nullable();

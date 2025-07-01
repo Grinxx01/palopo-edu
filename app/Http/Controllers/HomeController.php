@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EducationLevel;
+use App\Models\Institusi;
 
 class HomeController extends Controller
 {
@@ -10,20 +12,25 @@ class HomeController extends Controller
 {
     $levelId = $request->query('level');
 
-    $institutions = \App\Models\Institusi::when($levelId, function($query) use ($levelId) {
-        return $query->where('tingkat_pendidikan', $levelId);
-    })->get();
+    // Query semua level untuk tombol filter
+    $educationLevels = EducationLevel::all();
 
-    $educationLevels = \App\Models\EducationLevel::all();
+    // Ambil institusi, filter jika level dipilih
+    $institusis = Institusi::with('educationLevel')
+        ->when($levelId, function($query) use ($levelId) {
+            $query->where('education_level_id', $levelId);
+        })
+        ->get();
 
-    $currentLevel = $educationLevels->where('id', $levelId)->first();
+    // Data level aktif (untuk teks "Menampilkan: ...")
+    $currentLevel = $levelId ? EducationLevel::find($levelId) : null;
 
-    return view('home', [
-        'institutions' => $institutions,
-        'educationLevels' => $educationLevels,
-        'currentLevel' => $currentLevel,
-        'levelId' => $levelId,
-    ]);
+return view('home', [
+    'institutions' => $institusis,
+    'educationLevels' => $educationLevels,
+    'levelId' => $levelId,
+    'currentLevel' => $currentLevel,
+]);
 }
 
 }
