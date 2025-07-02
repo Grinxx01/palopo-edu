@@ -10,27 +10,26 @@ class HomeController extends Controller
 {
     public function index(Request $request)
 {
-    $levelId = $request->query('level');
+        $search = $request->input('search');
+        $levelId = $request->input('level');
 
-    // Query semua level untuk tombol filter
-    $educationLevels = EducationLevel::all();
+        $query = Institusi::with('educationLevel');
 
-    // Ambil institusi, filter jika level dipilih
-    $institusis = Institusi::with('educationLevel')
-        ->when($levelId, function($query) use ($levelId) {
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('nama_sekolah', 'like', '%' . $search . '%')
+                  ->orWhere('alamat', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($levelId) {
             $query->where('education_level_id', $levelId);
-        })
-        ->get();
+        }
 
-    // Data level aktif (untuk teks "Menampilkan: ...")
-    $currentLevel = $levelId ? EducationLevel::find($levelId) : null;
+        $institutions = $query->get();
+        $educationLevels = EducationLevel::all();
+        $currentLevel = $levelId ? EducationLevel::find($levelId) : null;
 
-return view('home', [
-    'institutions' => $institusis,
-    'educationLevels' => $educationLevels,
-    'levelId' => $levelId,
-    'currentLevel' => $currentLevel,
-]);
-}
-
+        return view('home', compact('institutions', 'educationLevels', 'levelId', 'currentLevel'));
+    }
 }

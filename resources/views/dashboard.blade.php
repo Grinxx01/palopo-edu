@@ -83,11 +83,5 @@
             </blockquote>
         </div>
     </section>
-
-    <div class="text-center">
-        <a href="{{ route('login') }}" class="btn btn-primary btn-cta">
-            <i class="fas fa-sign-in-alt me-2"></i> Mulai Sekarang
-        </a>
-    </div>
 </div>
 @endsection

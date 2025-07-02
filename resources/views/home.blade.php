@@ -8,14 +8,16 @@
         <h1>Direktori Pendidikan Kota Palopo</h1>
         <p class="lead mb-4">Temukan informasi lengkap tentang institusi pendidikan di Kota Palopo</p>
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="input-group mb-3">
-                    <input type="text" id="searchInstitution" class="form-control form-control-lg" placeholder="Cari institusi pendidikan...">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
+            <form method="GET" action="{{ route('home') }}" class="row justify-content-center mb-4">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari institusi pendidikan...">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>       
         </div>
     </div>
 </div>
