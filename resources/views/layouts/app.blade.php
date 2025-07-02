@@ -13,11 +13,12 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <i class="fas fa-school me-2"></i>Direktori Pendidikan
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                    <i class="fas fa-school me-2"></i>
+                    <span>Direktori Pendidikan</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,18 +30,27 @@
                                 Beranda
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="{{ route('home') }}">
+                                Institusi Pendidikan
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="levelsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tingkat Pendidikan
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="levelsDropdown">
-                                @foreach($educationLevels as $level)
-                                    <li>
-                                        <a class="dropdown-item" href="{{ url('/?level=' . $level->id) }}">
-                                            {{ $level->name }} ({{ $level->code }})
-                                        </a>
-                                    </li>
-                                @endforeach
+                                @isset($educationLevels)
+                                    @foreach($educationLevels as $level)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url('/?level=' . $level->id) }}">
+                                                {{ $level->name }} ({{ $level->code }})
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li><span class="dropdown-item text-muted">Tidak tersedia</span></li>
+                                @endisset
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -54,10 +64,23 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <a href="{{ url('/admin') }}" class="btn btn-outline-light">
-                            <i class="fas fa-user-shield me-1"></i> Admin Login
-                        </a>
+
+                    <div class="d-flex align-items-center">
+                        @auth
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-outline-light" type="submit">
+                                    <i class="fas fa-sign-out-alt me-1"></i> Logout
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-outline-light me-2">
+                                <i class="fas fa-sign-in-alt me-1"></i> Login
+                            </a>
+                            <a href="{{ route('register') }}" class="btn btn-light">
+                                <i class="fas fa-user-plus me-1"></i> Daftar
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -68,20 +91,21 @@
         @yield('content')
     </main>
 
-    <footer class="bg-dark text-white py-4 mt-4">
-        <div class="container">
-            <div class="row">
+    <footer class="custom-footer mt-4">
+        <div class="container py-4">
+            <div class="row gy-4">
                 <div class="col-md-4">
                     <h5>Direktori Pendidikan Kota Palopo</h5>
-                    <p>Platform informasi lengkap mengenai institusi pendidikan di Kota Palopo, mulai dari TK hingga Universitas.</p>
+                    <p>Platform informasi lengkap mengenai institusi pendidikan di Kota Palopo, mulai dari TK hingga Perguruan Tinggi.</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Tautan Penting</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url('/') }}" class="text-white">Beranda</a></li>
-                        <li><a href="{{ url('/about') }}" class="text-white">Tentang</a></li>
-                        <li><a href="{{ url('/contact') }}" class="text-white">Kontak</a></li>
-                        <li><a href="{{ url('/admin') }}" class="text-white">Admin Login</a></li>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="{{ url('/') }}">Beranda</a></li>
+                        <li><a href="{{ route('home') }}">Institusi Pendidikan</a></li>
+                        <li><a href="{{ url('/about') }}">Tentang</a></li>
+                        <li><a href="{{ url('/contact') }}">Kontak</a></li>
+                        <li><a href="{{ url('/admin') }}">Admin Panel</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -94,8 +118,8 @@
                 </div>
             </div>
             <hr>
-            <div class="text-center">
-                <p>&copy; {{ date('Y') }} Direktori Pendidikan Kota Palopo. All Rights Reserved.</p>
+            <div class="text-center small">
+                <p class="mb-0">&copy; {{ date('Y') }} Direktori Pendidikan Kota Palopo. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
