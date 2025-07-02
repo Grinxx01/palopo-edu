@@ -115,19 +115,19 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Dasar
-                        <span class="badge rounded-pill statistic-badge badge-sd">45</span>
+                        <span class="badge rounded-pill statistic-badge badge-sd">65</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Menengah Pertama
-                        <span class="badge rounded-pill statistic-badge badge-smp">20</span>
+                        <span class="badge rounded-pill statistic-badge badge-smp">25</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Menengah Atas
-                        <span class="badge rounded-pill statistic-badge badge-sma">15</span>
+                        <span class="badge rounded-pill statistic-badge badge-sma">7</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Menengah Kejuruan
-                        <span class="badge rounded-pill statistic-badge badge-smk">10</span>
+                        <span class="badge rounded-pill statistic-badge badge-smk">17</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Perguruan Tinggi
