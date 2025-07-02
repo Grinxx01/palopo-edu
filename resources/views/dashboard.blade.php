@@ -49,9 +49,6 @@
         <i class="fas fa-graduation-cap icon"></i>
         <h1 class="fw-bold mb-3">Selamat Datang di Direktori Pendidikan Kota Palopo</h1>
         <p class="lead mb-4">Temukan informasi lengkap tentang pendidikan dan perundang-undangannya di Indonesia.</p>
-        <a href="{{ route('login') }}" class="btn btn-light btn-cta">
-            <i class="fas fa-sign-in-alt me-2"></i> Login / Daftar untuk Melihat Direktori
-        </a>
     </section>
 
     <!-- Apa itu Pendidikan -->
@@ -83,5 +80,10 @@
             </blockquote>
         </div>
     </section>
+    <div class="text-center">
+        <a href="{{ route('login') }}" class="btn btn-primary btn-cta">
+            <i class="fas fa-sign-in-alt me-2"></i> Login / Daftar untuk Melihat Direktori
+        </a>
+    </div>
 </div>
 @endsection
