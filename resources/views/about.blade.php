@@ -123,15 +123,15 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Menengah Atas
-                        <span class="badge rounded-pill statistic-badge badge-sma">7</span>
+                        <span class="badge rounded-pill statistic-badge badge-sma">13</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Menengah Kejuruan
-                        <span class="badge rounded-pill statistic-badge badge-smk">17</span>
+                        <span class="badge rounded-pill statistic-badge badge-smk">20</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Perguruan Tinggi
-                        <span class="badge rounded-pill statistic-badge badge-univ">5</span>
+                        <span class="badge rounded-pill statistic-badge badge-univ">20</span>
                     </li>
                 </ul>
             </div>
