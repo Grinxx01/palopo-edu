@@ -111,11 +111,11 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Taman Kanak-kanak
-                        <span class="badge rounded-pill statistic-badge badge-tk">25</span>
+                        <span class="badge rounded-pill statistic-badge badge-tk">94</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Dasar
-                        <span class="badge rounded-pill statistic-badge badge-sd">65</span>
+                        <span class="badge rounded-pill statistic-badge badge-sd">80</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Sekolah Menengah Pertama
